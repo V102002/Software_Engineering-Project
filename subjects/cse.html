@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Filterable Table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono&display=swap" rel="stylesheet">
+    <style>
+
+          /* CSS styles */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /*if i set the width to be 100px, it'll only be 100px*/
+            font-family: "Reddit Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+  
+        body {
+            min-height: 100vh;
+            background: #dce3ef;
+            
+        }
+  
+                /* Custom styles */
+                
+                .custom-text {
+                    font-size: 1.5rem; /* Larger font size for better readability */
+                }
+                .custom-btn {
+                    background-color: #DCE3EF; /* Custom button background color */
+                    border-color: #4072b0; /* Custom button border color */
+                    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition effect */
+                }
+                .custom-btn:hover {
+                    background-color:#112d50; /* Custom button background color on hover */
+                    border-color: #4072b0; /* Custom button border color on hover */
+                }
+                .custom-img {
+                    width: 100%; /* Adjust image width to fill container */
+                }
+  
+        .zqg {
+            background-color: #112D50;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it's on top of other elements */
+        }
+          
+        .zqg a {
+            float: left;
+            display: block;
+            color:#F8F6F6;
+            text-align: center;
+            padding: 18px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 17px;
+        }
+          
+        .zqg a:hover {
+            background-color: #F8F6F6;
+            color: black;
+        }
+          
+        .lwy {
+            float: right;
+        }
+          
+          /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+          
+        .fadeIn {
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+          
+        /* Content padding to prevent overlapping with fixed navbar */
+        .mpf {
+            padding-top: 60px; /* Adjust according to your navbar height */
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+      body {
+        background-color: #dce3ef;
+        font-family: "Reddit Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        
+      }
+    .container {
+      margin-top: 50px;
+    }
+    table {
+      background-color: #DBE2EF;
+      border-radius: 0px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+
+    }
+    th, td {
+      text-align: center;
+      padding: 10px;
+    }
+    button {
+      background-color:#3F72AF;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #138496;
+    }
+    input.form-control {
+      border-radius: 4px;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color:F9F7F7;
+    }
+    .table th, .table td {
+      border-top: none;
+    }
+    .table th {
+      background-color:#112D4E;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="zqg">
+    <a class="active" href="/renovations.html">Company Name</a>
+    <div class="lwy">
+      <a href="">Join Team</a>
+      <a href="./aboutus.html">About Us</a>
+      <a href="#" class="fadeIn">Login/Signup</a>
+    </div>
+  </div>
+
+<div class="container">
+  <h2 class="text-center text-primary">CSE Table</h2>
+  <p class="text-center text-info">Type something in the input field to search the table for project titles or faculty names:</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="bg-dark">Project Title</th>
+          <th class="bg-dark">Faculty Name</th>
+          <th class="bg-dark">More Info</th>
+          <th class="bg-dark">Apply now </th>
+        </tr>
+      </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>Machine learning approaches for designing state estimators for control systems applications</td>
+        <td>Gourav Saha</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now </button></td>
+    </tr>
+    <tr>
+        <td>Surrogate model of application specific optimization solvers using Machine Learning</td>
+        <td>Gourav Saha</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Using Reinforcement Learning for Optimal Control and Estimation under Communication Constraints</td>
+        <td>Gourav Saha</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Innovative Sorting Algorithms</td>
+        <td>Garimella Rama Murthy</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Novel Graph Algorithms and applications</td>
+        <td>Garimella Rama Murthy</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Heuristics for Multiobjective Optimization</td>
+        <td>Garimella Rama Murthy</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Complex Valued Hopfield Associative Memories</td>
+        <td>Garimella Rama Murthy</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Leveraging the binary alphabet to reduce data storage and transmission</td>
+        <td>Avinash Chauhan</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Mitigating prisoner's dilemma in climate change by installing non-anthropocentric values using ML/NLP</td>
+        <td>Avinash Chauhan</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Coping with anxiety through virtual reality</td>
+        <td>Avinash Chauhan</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>Routing algorithm for Sensor Networks and IoT</td>
+        <td>Avinash Chauhan</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>MONO-LINGUAL AND MULTI-LINGUAL SCRIPT IDENTIFICATION IN 3D-2D WILD IMAGES AND SCANNED DOCUMENTS USING CS-RNN</td>
+        <td>Veeraiah Talagondapati</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>A collaborative and intelligent NIDS architecture for SDN-based Cloud IoT networks</td>
+        <td>Veeraiah Talagondapati</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+    <tr>
+        <td>A collaborative and intelligent NIDS architecture for SDN-based Cloud IoT networks</td>
+        <td>Veeraiah Talagondapati</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply now</button></td>
+    </tr>
+
+    <tr>
+      <td>Stance analysis of a topic from retweets</td>
+      <td>Rahul Roy</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Clinical Report generation from Medical images.</td>
+      <td>N. Raghu Kisore</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Exploring neural augmented memory for large language models</td>
+      <td>Nidhi Goyal</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Morphological tagger for Sanskrit text</td>
+      <td>Prof. Sri Kalyana Rama Jyosyula</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Restoration of turbid underwater images</td>
+      <td>Dr. Dipti Mishra</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Data Visualization</td>
+      <td>Rajesh Tavva</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Anomaly Detection in Machines</td>
+      <td>Arya Kumar Bhattacharya</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Movie Semantic Search</td>
+      <td>Yayati Gupta</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>Short-video app</td>
+      <td>Neeraj Choudhary</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+      <td>AR/VR applications using WebGL/Unity/Maya etc.</td>
+      <td>Shabnam Samima</td>
+      <td><button>More Info</button></td>
+      <td><button>Apply now</button></td>
+  </tr>
+  <tr>
+    <td>Neural Architecture Search: Synthesis of ANN Architectures using Evolutionary Algorithms</td>
+    <td>Satish Chandra</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Automatic Creation of Musical Composition using Artificial Intelligence</td>
+    <td>Raja Rao Tripuraneni</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Tape Casting Quality Improvements using Machine Learning</td>
+    <td>Mahesh</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Cooling at Ultra Low Temperatures - failure prognostics</td>
+    <td>Vivek Mishra</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Synthetic Social Network Generation and Information Cascades Simulation</td>
+    <td>Ravi Kishore</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Independent Study</td>
+    <td>Om Prakash Patel</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>"Navigating Workforce Dynamics: Trends and Transitions in the Post-Pandemic Era"</td>
+    <td>Prafulla Kalapatapu and Arya Kumar Bhattacharya</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Personalized Email Marketing App</td>
+    <td>Neelakantam Gone</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Real-time Multi-Modal Emotion Recognition</td>
+    <td>Bhanukiran P</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Resume Coach</td>
+    <td>V. Sowmini Devi</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>"Understanding Social Networks: Leveraging Local Node Features for Multitask Structural Profiling"</td>
+    <td>Sasank Mouli</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Ensemble-learning based Heterogeneous Transfer Learning</td>
+    <td>Satish Chandra</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>BotanicAI: Empowering Health through Medicinal Plant Recognition</td>
+    <td>Raja Rao Tripuraneni</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Semantic Segmentation of Teeth in Panoramic X-ray Image</td>
+    <td>Mahesh</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+<tr>
+    <td>Deep Learning for Automated Tooth Segmentation and Landmark Localization on 3D Intraoral Scans</td>
+    <td>Vivek Mishra</td>
+    <td><button>More Info</button></td>
+    <td><button>Apply now</button></td>
+</tr>
+
+
+
+      
+    </tbody>
+  </table>
+</div>
+<p class="text-center text-muted">Note that we start the search in tbody, to prevent filtering the table headers.</p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#myInput").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+});
+</script>
+
+</body>
+</html>

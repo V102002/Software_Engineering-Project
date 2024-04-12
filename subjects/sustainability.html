@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Filterable Table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono&display=swap" rel="stylesheet">
+    <style>
+
+          /* CSS styles */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /*if i set the width to be 100px, it'll only be 100px*/
+            font-family: "Reddit Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+  
+        body {
+            min-height: 100vh;
+            background: #dce3ef;
+            
+        }
+  
+                /* Custom styles */
+                
+                .custom-text {
+                    font-size: 1.5rem; /* Larger font size for better readability */
+                }
+                .custom-btn {
+                    background-color: #DCE3EF; /* Custom button background color */
+                    border-color: #4072b0; /* Custom button border color */
+                    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition effect */
+                }
+                .custom-btn:hover {
+                    background-color:#112d50; /* Custom button background color on hover */
+                    border-color: #4072b0; /* Custom button border color on hover */
+                }
+                .custom-img {
+                    width: 100%; /* Adjust image width to fill container */
+                }
+  
+        .zqg {
+            background-color: #112D50;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it's on top of other elements */
+        }
+          
+        .zqg a {
+            float: left;
+            display: block;
+            color:#F8F6F6;
+            text-align: center;
+            padding: 18px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: 17px;
+        }
+          
+        .zqg a:hover {
+            background-color: #F8F6F6;
+            color: black;
+        }
+          
+        .lwy {
+            float: right;
+        }
+          
+          /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+          
+        .fadeIn {
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+          
+        /* Content padding to prevent overlapping with fixed navbar */
+        .mpf {
+            padding-top: 60px; /* Adjust according to your navbar height */
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+      body {
+        background-color: #dce3ef;
+        font-family: "Reddit Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        
+      }
+    .container {
+      margin-top: 50px;
+    }
+    table {
+      background-color: #DBE2EF;
+      border-radius: 0px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+
+    }
+    th, td {
+      text-align: center;
+      padding: 10px;
+    }
+    button {
+      background-color:#3F72AF;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #138496;
+    }
+    input.form-control {
+      border-radius: 4px;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color:F9F7F7;
+    }
+    .table th, .table td {
+      border-top: none;
+    }
+    .table th {
+      background-color:#112D4E;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="zqg">
+    <a class="active" href="/renovations.html">Company Name</a>
+    <div class="lwy">
+      <a href="">Join Team</a>
+      <a href="./aboutus.html">About Us</a>
+      <a href="#" class="fadeIn">Login/Signup</a>
+    </div>
+  </div>
+
+<div class="container">
+  <h2 class="text-center text-primary">sustainability Table</h2>
+  <p class="text-center text-info">Type something in the input field to search the table for project titles or faculty names:</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="bg-dark">Project Title</th>
+          <th class="bg-dark">Faculty Name</th>
+          <th class="bg-dark">More Info</th>
+          <th class="bg-dark">Apply now </th>
+        </tr>
+      </thead>
+    <tbody id="myTable">
+      
+      <tr>
+        <td>Predicting air temperatures from land surface temperatures using machine learning techniques</td>
+        <td>Surekha Tetali</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply</button></td>
+      </tr>
+      <tr>
+        <td>Land Use Classification of Hyderabad using machine learning techniques</td>
+        <td>Surekha Tetali</td>
+        <td><button>More Info</button></td>
+        <td><button>Apply</button></td>
+      </tr>
+
+
+      
+    </tbody>
+  </table>
+</div>
+<p class="text-center text-muted">Note that we start the search in tbody, to prevent filtering the table headers.</p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#myInput").on("keyup", function() {
+  var value = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  });
+});
+});
+</script>
+
+</body>
+</html>
